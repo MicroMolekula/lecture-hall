@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: outfit;
+    src: url(../assets/fonts/Outfit-VariableFont_wght.ttf);
+}
+
+@font-face {
+    font-family: inter;
+    src: url(../assets/fonts/Inter-VariableFont_slnt\,wght.ttf);
+}
+
+.font-inter{
+    font-family: inter;
+}
+
+#applyCSS > *{
+    box-sizing: border-box;
+}
