@@ -11,7 +11,7 @@
     <div class="w-72 bg-blue1 h-screen inline box-border">
         <div class="bg-blue-500 bg-blue2 w-full h-20 flex items-center justify-center">
             <div class="flex">
-                <img class="w-10"src="../assets/logos/logoLSTUwhite.png" alt="">
+                <img class="w-7 mr-2"src="../assets/logos/logoLSTUwhite.png" alt="">
                 <div>
                     <div class="relative text-xl text-white  center1 font-inter">
                        ЛГТУ Файлы
