@@ -1,7 +1,7 @@
 <script setup>
     import {ref} from 'vue'
     import { defineComponent } from "vue";
-    import axios from 'axios'
+    import axios, { formToJSON } from 'axios'
     let password = ref("")
     let login = ref("")
 
@@ -9,15 +9,22 @@
 
 
     function makeLogin(){
-        axios.post("http://localhost:888/api/login",userData)
-        .then(response => console.log(response))
-        console.log(password)
-        console.log(login)
-        //tryToJoin()
+        let request = JSON.stringify(userData.value)
+        console.log(request)
+
+        const requestOptions = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: request,
+        };
+        fetch("http://localhost:888/api/login", requestOptions)
+            .then(response => response.json())
+            .then(data => tryToJoin(data));
     }
 
-    function tryToJoin(){
-        emit('successfulJoin')
+    function tryToJoin(data){
+        if(data.data.message == "Success")
+            emit('successfulJoin')
     }
 
     const userData = ref({
