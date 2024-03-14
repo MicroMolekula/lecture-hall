@@ -18,7 +18,7 @@ class Group extends Model
     {
         return $this->belongsToMany(
             Subject::class,
-            'subjects',
+            'group_subjects',
             'group_id',
             'subject_id');
     }

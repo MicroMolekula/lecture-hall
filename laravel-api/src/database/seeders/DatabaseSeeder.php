@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Group;
+use App\Models\GroupSubject;
+use App\Models\Subject;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
@@ -17,6 +19,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->addGroups();
         $this->addUsers();
+        $this->addSubjects();
+        $this->addGroupSubject();
     }
 
     private function addGroups()
@@ -55,6 +59,12 @@ class DatabaseSeeder extends Seeder
 
     private function addSubjects()
     {
+        Subject::factory(30)->create();
+    }
 
+
+    private function addGroupSubject()
+    {
+        GroupSubject::factory(80)->create();
     }
 }
