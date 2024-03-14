@@ -10,13 +10,19 @@
         console.log(id)
         emit('cardClick',id)
     }
+    let subjectList = ref()
+
+    fetch('http://localhost:888/api/users/55/show')
+    .then(response => response.json())
+    .then(data => subjectList.value = data.data)
+
 
 </script>
 
 <template>
-    <div class="bg-gray-50">
+    <div class="">
         <v-sheet class="p-5">
-            <SubjectCard @cardClick="onCardClicked" name="Матан" :subjectId="1" class="mr-5 mb-5"/>
+            <SubjectCard @cardClick="onCardClicked" v-for="subj in subjectList" :name="subj.title" :subjectId="subj.id" class="mr-5 mb-5"/>
 
         </v-sheet>
        

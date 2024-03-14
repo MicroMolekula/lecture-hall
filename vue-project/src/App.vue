@@ -14,6 +14,7 @@
     hideLoginWindow()
     console.log("logined")
   }
+
 </script>
 
 <template>

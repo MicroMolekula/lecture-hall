@@ -20,7 +20,7 @@
 
 
 <template>
-<div class=" bg-slate-200 z-10 w-full h-full absolute pt-96">
+<div class=" bg-slate-200 z-10 w-full h-full absolute">
     <v-sheet class="mx-auto p-5 rounded-xl" width="500" height="250">
         <v-form @submit.prevent>
         <v-text-field

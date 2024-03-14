@@ -5,9 +5,7 @@
         name : String
     })
     const emit = defineEmits(['cardClick'])
-    fetch('https://api.thecatapi.com/v1/images/search')
-        .then(response => response.json())
-        .then(data => img.value = data[0].url)
+
 
     let id = ref(props.subjectId)
 
