@@ -20,7 +20,7 @@ class LoginController extends Controller
         try {
             $user = User::where('login', $data['login'])->get()->firstOrFail();
             try{
-                return $user->password === $data['password'] ?
+                return $user->password == $data['password'] ?
                     new LoginResource($user) :
                     throw new Exception('Wrong password.');
             } catch (Exception $exception){
