@@ -1,6 +1,7 @@
 <script setup>
     import {ref} from 'vue'
     import { defineComponent } from "vue";
+    import axios from 'axios'
     let password = ref("")
     let login = ref("")
 
@@ -8,14 +9,23 @@
 
 
     function makeLogin(){
+        axios.post("http://localhost:888/api/login",userData)
+        .then(response => console.log(response))
         console.log(password)
         console.log(login)
-        tryToJoin()
+        //tryToJoin()
     }
 
     function tryToJoin(){
         emit('successfulJoin')
     }
+
+    const userData = ref({
+        login: "",
+        password: "",
+    });
+
+
 </script>
 
 
@@ -24,12 +34,12 @@
     <v-sheet class="mx-auto p-5 rounded-xl" width="500" height="250">
         <v-form @submit.prevent>
         <v-text-field
-            v-model="login"
+            v-model="userData.login"
             label="Логин"
         ></v-text-field>
 
         <v-text-field
-            v-model="password"
+            v-model="userData.password"
             label="Пароль"
         ></v-text-field>
 
