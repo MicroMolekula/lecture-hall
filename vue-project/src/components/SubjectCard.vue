@@ -22,12 +22,13 @@
 
 
 <template>
-    <v-btn @click="cardClicked" height="auto" min-width="250" class="p-0">
-        <v-card width="auto" height="auto">
+    <v-btn @click="cardClicked" height="auto" min-width="250" class="rounded-3xl p-0">
+        <v-card width="auto" height="auto" class="rounded-3xl">
             <v-card-title>{{ name }}</v-card-title>
             <v-img
-            class=" text-white"
+            class="text-white "
             width="250"
+            height="150"
             :src=img
             cover
             >
