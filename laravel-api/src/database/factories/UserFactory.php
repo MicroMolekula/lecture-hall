@@ -2,9 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\Group;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Faker\Generator;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -16,6 +18,82 @@ class UserFactory extends Factory
      */
     protected static ?string $password;
 
+    private array $fio = [
+        [
+            [
+                'Ксения',
+                'Матвей',
+                'Михаил',
+                'Николай',
+                'Егор',
+                'Савелий',
+                'Григорий',
+                'Александр',
+                'Максим',
+                'Сергей',
+                'Иван',
+            ],
+            [
+                'Александрович',
+                'Ярославович',
+                'Владиславович',
+                'Григорьевич',
+                'Романович',
+                'Глебович',
+                'Арсеньевич',
+                'Мирославович',
+                'Артёмович',
+                'Яковлевич',
+            ],
+            [
+                'Александров',
+                'Андреев',
+                'Бабушкин',
+                'Баранов',
+                'Блинов',
+                'Воронов',
+                'Дроздов',
+                'Иванов',
+                'Попов',
+            ]
+        ],
+        [
+            [
+                'Анна',
+                'Ксения',
+                'Полина',
+                'Вера',
+                'Анастасия',
+                'Евгения',
+                'Злата',
+                'Кира',
+                'София',
+            ],
+            [
+                'Дмитриевна',
+                'Тимофеевна',
+                'Александровна',
+                'Никитична',
+                'Кирилловна',
+                'Макаровна',
+                'Максимовна',
+                'Тимофеевна',
+                'Ильинична',
+            ],
+            [
+                'Александрова',
+                'Андреева',
+                'Бабушкина',
+                'Баранова',
+                'Блинова',
+                'Воронова',
+                'Дроздова',
+                'Иванова',
+                'Попова',
+                'Сорокина',
+            ]
+        ]
+    ];
     /**
      * Define the model's default state.
      *
@@ -23,12 +101,15 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $gender = random_int(0, 1);
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
-            'remember_token' => Str::random(10),
+            'login' => $this->faker->unique()->bothify('???-######'),
+            'password' => $this->faker->password(),
+            'name' => $this->faker->randomElements($this->fio[$gender][0])[0],
+            'middlename' => $this->faker->randomElements($this->fio[$gender][1])[0],
+            'surname' => $this->faker->randomElements($this->fio[$gender][2])[0],
+            'role' => $this->faker->randomElements(['student', 'teacher', 'admin'])[0],
+            'group_id' => null,
         ];
     }
 
