@@ -1,14 +1,34 @@
 <script setup>
     import {ref} from 'vue';
-    import LeftPanelElem from './LeftPanelElem.vue'
     defineProps({
        name : String
     })
+
+    function buttonClicked(event){
+        console.log(event)
+    }
+
+    class group{
+        name;
+        infos;
+        constructor(name,infos){
+            this.name = name;
+            this.infos = infos
+        }
+    }
+    class buttInfo{
+        name;
+        text;
+    }
+
+    let groupList = [new group("СЕРВИС",[new  buttInfo("LectionButton","📄Лекции"),new buttInfo("SubjectsButton","📄Предметы") ]),
+    new group("ФОРМЫ ДОБАВЛЕНИЯ",[new buttInfo("SubjectAddButton","🔐Предмет"),new buttInfo("SubjectsButton","🔐Группа"),new buttInfo("SubjectsButton","🔐Пользователь"),new buttInfo("SubjectsButton","🔐Факультет") ])]
+    
 </script>
 
 
 <template>
-    <div class="w-72 bg-blue1 h-screen inline box-border">
+    <div class="w-72 bg-blue1 h-screen flex-col box-border">
         <div class="bg-blue-500 bg-blue2 w-full h-20 flex items-center justify-center box-border mb-5">
             <div class="flex">
                 <img class="w-7 mr-2"src="../assets/logos/logoLSTUwhite.png" alt="">
@@ -20,33 +40,29 @@
             </div>
             
         </div>
-        <div class="text-center min-h-full flex-col w-auto relative box-border">
-            <v-btn evalation="4" class="hover:bg-blue-300  rounded-md w-52 h-52 mb-5 text-white font-inter text-lg" height="40" >📄Лекции</v-btn>
-            <v-btn evalation="4" class="hover:bg-blue-300 rounded-md w-52 h-52 mb-5 text-white font-inter text-lg" height="40" >📚Предметы</v-btn>
-            <v-text class="hover:bg-blue-300 rounded-md w-52 h-52 mb-5 text-white font-inter text-lg">ФОРМЫ ДОБАВЛЕНИЯ</v-text>
-            <v-btn evalation="4" class="hover:bg-blue-300 rounded-md w-52 h-52 mb-5 text-white font-inter text-lg" height="40" ></v-btn>
-            <v-btn evalation="4" class="hover:bg-blue-300 rounded-md w-52 h-52 mb-5 text-white font-inter text-lg" height="40" >Фрик</v-btn>
-            <v-btn evalation="4" class="hover:bg-blue-300 rounded-md w-52 h-52 mb-5 text-white font-inter text-lg" height="40" >Фрик</v-btn>
-            <v-btn evalation="4" class="hover:bg-red-400 bg-red-300 rounded-md w-52 h-52 text-white font-inter text-lg" height="40" >Выход</v-btn>
+        <div class="text-center grow-1 w-auto h-auto box-border">
+            <v-text class=" text-gray-900rounded-md w-52 h-52 mb-5  font-inter text-lg ">СЕРВИС</v-text>
+            <v-btn evalation="4" class="buttonLeftStyle text-white  " height="40" name="LectionButton" >📄Лекции</v-btn>
+            <v-btn evalation="4" class="buttonLeftStyle text-white " height="40"  >📚Предметы</v-btn>
+            <v-text class="text-gray-900 rounded-md w-52 h-52 mb-5  font-inter text-lg">ФОРМЫ ДОБАВЛЕНИЯ</v-text>
+            <v-btn evalation="4" class="buttonLeftStyle text-white " height="40" >🔐Предмет</v-btn>
+            <v-btn evalation="4" class="buttonLeftStyle text-white " height="40" >🔐Группа</v-btn>
+            <v-btn evalation="4" class="buttonLeftStyle text-white " height="40" >🔐Факультет</v-btn>
+            <v-btn evalation="4" class="buttonLeftStyle text-white " height="40" >🔐Пользователь</v-btn>
+            <v-text class="text-gray-900  rounded-md w-52 h-52 mb-5  font-inter text-lg">ОСТАЛЬНОЕ</v-text>
+            <v-btn evalation="4" class="hover:bg-red-400 bg-red-300 text-white buttonLeftStyle " height="40" >Выход</v-btn>
         </div>
         
     </div>
 </template>
 
 <style scoped>
+    
+    .grow-1{
+        flex-grow: 1;
+    }
     *{
         box-sizing: border-box;
     }
-    .bg-blue1{
-        background-color: rgba(55, 160, 234, 1);
-    }
-    .bg-blue2{
-        background-color: rgba(42, 143, 215, 1);
-    }
-    .center1{
-        position: relative;
-        top:50%;
-        bottom: 50%;
-        transform: translate(0%,-50%);
-    }
+    
 </style>

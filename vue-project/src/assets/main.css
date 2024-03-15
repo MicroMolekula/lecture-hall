@@ -12,6 +12,26 @@
     src: url(../assets/fonts/Inter.ttf);
 }
 
+@layer components{
+    .buttonLeftStyle{
+        @apply hover:bg-blue-300  rounded-md w-52 h-52 mb-5 text-white font-inter text-lg bg-blue-400;
+    }
+}
+
+
+.bg-blue1{
+    background-color: rgba(55, 160, 234, 1);
+}
+.bg-blue2{
+    background-color: rgba(42, 143, 215, 1);
+}
+.center1{
+    position: relative;
+    top:50%;
+    bottom: 50%;
+    transform: translate(0%,-50%);
+}
+
 .font-inter{
     font-family: inter;
 }

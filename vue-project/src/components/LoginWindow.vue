@@ -68,7 +68,7 @@
             <v-text-field
                 v-model="userData.password"
                 label="Пароль"
-                :error-messages="formMessage"
+                :messages="formMessage"
             ></v-text-field>
 
             <v-btn @click="join" color="error" class="mt-2" type="submit" block>Войти</v-btn>

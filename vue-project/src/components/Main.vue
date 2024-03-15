@@ -8,12 +8,15 @@
         userId : Number
     })
     let showFiles = ref(false)
-
+    let showAdminSubjectForm = ref(false)
+    let showSubjectContainer = ref(false)
     function onCardClicked(id){
         showFiles.value = true
         console.log(showFiles)
     }
+    function unseeAll(){
 
+    }
 </script>
 
 <template>
