@@ -71,7 +71,7 @@
                 :error-messages="formMessage"
             ></v-text-field>
 
-            <v-btn @click="join" class="mt-2" type="submit" block>Войти</v-btn>
+            <v-btn @click="join" color="error" class="mt-2" type="submit" block>Войти</v-btn>
             <v-btn @click="makeLogin" color="info" class="mt-2" prepend-icon="../assets/logos/vkIcon.svg" block>
                 <img class="w-6 fill-current text-blue-400" src="../assets/logos/vkIconWhite.svg" alt="">
                 Войти через VKID

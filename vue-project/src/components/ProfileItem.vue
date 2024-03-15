@@ -8,7 +8,6 @@
     })
     let imgPath = ""
     if(props.imagePath == null){
-        console.log("nulevoe eblo")
         imgPath = ref("src/assets/logos/" + "profileIcon.svg")
     } 
     else{

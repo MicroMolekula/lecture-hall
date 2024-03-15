@@ -20,7 +20,7 @@
 <template>
   <div class="flex">
     <LoginWindow @successfulJoin="login" v-show="loginShow"/>
-    <LeftPanel name="ЛГТУ файлы"/>
+    <LeftPanel name="ЛГТУ Лекции"/>
     <Main/>
   </div>
   

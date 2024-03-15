@@ -9,32 +9,34 @@
 
 <template>
     <div class="w-72 bg-blue1 h-screen inline box-border">
-        <div class="bg-blue-500 bg-blue2 w-full h-20 flex items-center justify-center">
+        <div class="bg-blue-500 bg-blue2 w-full h-20 flex items-center justify-center box-border mb-5">
             <div class="flex">
                 <img class="w-7 mr-2"src="../assets/logos/logoLSTUwhite.png" alt="">
                 <div>
                     <div class="relative text-xl text-white  center1 font-inter">
-                       ЛГТУ Файлы
+                       {{ name }}
                     </div>
                 </div>
             </div>
             
         </div>
-        <div class="text-center block w-auto h-auto pt-6">
-            <LeftPanelElem text="Файл1"/>
-            <LeftPanelElem text="Файл2"/>
-            <LeftPanelElem text="Файл2"/>
-            <LeftPanelElem text="Файл2"/>
-            <LeftPanelElem text="Файл2"/>
-            <LeftPanelElem text="Файл2"/>
-            <LeftPanelElem text="Файл2"/>
+        <div class="text-center min-h-full flex-col w-auto relative box-border">
+            <v-btn evalation="4" class="hover:bg-blue-300  rounded-md w-52 h-52 mb-5 text-white font-inter text-lg" height="40" >📄Лекции</v-btn>
+            <v-btn evalation="4" class="hover:bg-blue-300 rounded-md w-52 h-52 mb-5 text-white font-inter text-lg" height="40" >📚Предметы</v-btn>
+            <v-text class="hover:bg-blue-300 rounded-md w-52 h-52 mb-5 text-white font-inter text-lg">ФОРМЫ ДОБАВЛЕНИЯ</v-text>
+            <v-btn evalation="4" class="hover:bg-blue-300 rounded-md w-52 h-52 mb-5 text-white font-inter text-lg" height="40" ></v-btn>
+            <v-btn evalation="4" class="hover:bg-blue-300 rounded-md w-52 h-52 mb-5 text-white font-inter text-lg" height="40" >Фрик</v-btn>
+            <v-btn evalation="4" class="hover:bg-blue-300 rounded-md w-52 h-52 mb-5 text-white font-inter text-lg" height="40" >Фрик</v-btn>
+            <v-btn evalation="4" class="hover:bg-red-400 bg-red-300 rounded-md w-52 h-52 text-white font-inter text-lg" height="40" >Выход</v-btn>
         </div>
         
     </div>
 </template>
 
 <style scoped>
-
+    *{
+        box-sizing: border-box;
+    }
     .bg-blue1{
         background-color: rgba(55, 160, 234, 1);
     }

@@ -6,11 +6,14 @@
 
 
 <template>
-    <div class="inline-block ">
-        <div class="mb-2 w-52 h-12 rounded-md pl-6 flex items-center hover:bg-blue-300">
-            <img class="inline w-6 mr-3" src="../assets/logos/fileIcon.svg" alt="">
-            <div class="inline font-inter text-white text-lg">{{ text }}</div>
-         </div>
+
+    <div class="inline-block w-52">
+        <div class=" rounded-md  flex hover:bg-blue-300">
+            <v-btn .text-normal class="m-0 p-0 w-full h-full rounded-md">
+                <img class="inline w-6 mr-3" src="../assets/logos/fileIcon.svg" alt="">
+                <div class="inline font-inter text-white text-lg">{{ text }}</div>
+            </v-btn>
+        </div> 
     </div>
     
 </template>
