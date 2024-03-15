@@ -15,10 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('path')->nullable();
-            $table->string('description')->nullable();
-            $table->string('type')->default('folder');
-            $table->foreignId('file_id')->nullable()
-                ->constrained('files', 'id');
+            $table->string('description')->nullable()->default(null);
+            $table->string('type')->default('text');
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('subject_id')->constrained('subjects');
             $table->timestamps();

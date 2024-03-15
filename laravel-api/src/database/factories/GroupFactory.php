@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Institute;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,8 @@ class GroupFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker->regexify('[A-Z]{2}-2[0-3]-[12]')
+            'title' => $this->faker->regexify('[A-Z]{2}-2[0-3]-[12]'),
+            'institute_id' => Institute::all()->random(1)->firstOrFail(),
         ];
     }
 }
