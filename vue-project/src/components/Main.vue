@@ -3,6 +3,7 @@
      import MainFileContainer from './MainFileContainer.vue'
      import MainSubjectContainer from './MainSubjectContainer.vue'
      import {ref} from 'vue'
+     import MainAdminSubjectForm from './MainAdminSubjectForm.vue'
      defineProps({
         userId : Number
     })
@@ -20,7 +21,8 @@
         <div class="table-row h-10"><Header/></div>
 
         <MainFileContainer v-if="showFiles" class="table-row"/>
-        <MainSubjectContainer v-else @cardClick="onCardClicked"  class="table-row"/>
+        <MainAdminSubjectForm v-else class="table-row"/>
+        <!-- <MainSubjectContainer v-else @cardClick="onCardClicked"  class="table-row"/> -->
     </div>
     
 </template>
