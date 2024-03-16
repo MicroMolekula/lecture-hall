@@ -22,7 +22,7 @@ Route::get('/users', [\App\Http\Controllers\UserController::class, 'index']);
 Route::get('/users/{user}/show', [\App\Http\Controllers\UserController::class, 'show']);
 Route::post('/login', \App\Http\Controllers\LoginController::class);
 Route::get('/test', \App\Http\Controllers\TestAudioController::class);
-
+Route::get('/users/test', [\App\Http\Controllers\UserController::class, 'test']);
 
 
 Route::get('/subject', \App\Http\Controllers\Subject\IndexController::class)->name('subject.index');
@@ -31,6 +31,15 @@ Route::post('/subject', \App\Http\Controllers\Subject\StoreController::class)->n
 Route::get('/subject/{subject}', \App\Http\Controllers\Subject\ShowController::class)->name('subject.show');
 Route::get('/subject/{subject}/edit', \App\Http\Controllers\Subject\EditController::class)->name('subject.edit');
 Route::patch('/subject/{subject}', \App\Http\Controllers\Subject\UpdateController::class)->name('subject.update');
+
+Route::delete('/subject/{subject}', \App\Http\Controllers\Subject\DestroyController::class)->name('subject.delete');
+
+
+////////////////////////////////
+
+Route::apiResources([
+    'files' => \App\Http\Controllers\Api\FileController::class
+]);
 Route::delete('/subject/{subject}',\App\Http\Controllers\Subject\DestroyController::class   )->name('subject.delete');
 
 
@@ -47,6 +56,7 @@ Route::delete('/institute/{institute}',\App\Http\Controllers\Institute\DestroyCo
 Route::group([
     'middleware' => 'api',
     'prefix' => 'auth',
+    'namespace' => 'App\Http\Controllers',
 ], function ($router) {
     Route::post('login', 'AuthController@login');
     Route::post('logout', 'AuthController@logout');
@@ -63,4 +73,5 @@ Route::get('/group/{group}', \App\Http\Controllers\Group\ShowController::class)-
 Route::get('/group/{group}/edit', \App\Http\Controllers\Group\EditController::class)->name('group.edit');
 Route::patch('/group/{group}', \App\Http\Controllers\Group\UpdateController::class)->name('group.update');
 Route::delete('/group/{group}',\App\Http\Controllers\Group\DestroyController::class   )->name('group.delete');
+
 

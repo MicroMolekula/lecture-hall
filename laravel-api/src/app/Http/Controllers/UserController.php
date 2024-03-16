@@ -6,7 +6,10 @@ use App\Http\Resources\SubjectResource;
 use App\Http\Resources\UserResource;
 use App\Models\Group;
 use App\Models\User;
+use Illuminate\Hashing\BcryptHasher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -21,5 +24,14 @@ class UserController extends Controller
         $group = $user->group;
         $subjects = $group->subjects;
         return SubjectResource::collection($subjects);
+    }
+
+    public function test()
+    {
+        $user = User::all()->random(1)->firstOrFail();
+        return [
+            'login' => $user->login,
+            'password' => $user->password,
+        ];
     }
 }
