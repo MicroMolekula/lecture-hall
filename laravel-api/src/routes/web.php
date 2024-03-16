@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['namespace'=>'Subject'], function(){
+/*Route::group(['namespace'=>'Subject'], function(){
     Route::get('/subject', 'IndexController')->name('subject.index');
     Route::get('/subject/create', 'CreateController')->name('subject.create');
     Route::post('/subject', 'StoreController')->name('subject.store');
@@ -25,4 +25,4 @@ Route::group(['namespace'=>'Subject'], function(){
     Route::get('/subject/{subject}/edit', 'EditController')->name('subject.edit');
     Route::patch('/subject/{subject}', 'UpdateController')->name('subject.update');
     Route::delete('/subject/{subject}', 'DestroyController')->name('subject.delete');
-});
+});*/
