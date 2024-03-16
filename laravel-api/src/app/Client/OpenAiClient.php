@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Client;
 use \GuzzleHttp\Client;
 use Illuminate\Support\Facades\Storage;
@@ -14,7 +15,7 @@ class OpenAiClient
     {
         $this->openaiClient = \Tectalic\OpenAi\Manager::build(
             new Client(),
-            new \Tectalic\OpenAi\Authentication(getenv('sk-V7FZefbCueQQqfH74e904a8150164eD4918392C0E009C314'))
+            new \Tectalic\OpenAi\Authentication(getenv('IGNITION_OPEN_AI_KEY'))
         );
     }
 
