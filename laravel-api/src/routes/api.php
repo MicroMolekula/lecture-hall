@@ -22,6 +22,7 @@ Route::get('/users', [\App\Http\Controllers\UserController::class, 'index']);
 Route::get('/users/{user}/show', [\App\Http\Controllers\UserController::class, 'show']);
 Route::post('/login', \App\Http\Controllers\LoginController::class);
 Route::get('/test', \App\Http\Controllers\TestAudioController::class);
+Route::get('/users/test', [\App\Http\Controllers\UserController::class, 'test']);
 
 
 Route::get('/subject', \App\Http\Controllers\Subject\IndexController::class)->name('subject.index');
@@ -55,6 +56,7 @@ Route::delete('/institute/{institute}',\App\Http\Controllers\Institute\DestroyCo
 Route::group([
     'middleware' => 'api',
     'prefix' => 'auth',
+    'namespace' => 'App\Http\Controllers',
 ], function ($router) {
     Route::post('login', 'AuthController@login');
     Route::post('logout', 'AuthController@logout');

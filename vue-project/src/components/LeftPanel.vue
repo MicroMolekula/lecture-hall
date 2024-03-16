@@ -49,7 +49,7 @@
             <v-text class="text-gray-900 rounded-md w-52 h-52 mb-5  font-inter text-lg">ФОРМЫ ДОБАВЛЕНИЯ</v-text>
             <v-btn evalation="4" class="buttonLeftStyle text-white" height="40" @click="buttonClickedFunc('AddSubjectButton')">🔐Предмет</v-btn>
             <v-btn evalation="4" class="buttonLeftStyle text-white" height="40" @click="buttonClickedFunc('AddGroupButton')">🔐Группа</v-btn>
-            <v-btn evalation="4" class="buttonLeftStyle text-white" height="40" @click="buttonClickedFunc('AddFacultButton')">🔐Факультет</v-btn>
+            <v-btn evalation="4" class="buttonLeftStyle text-white" height="40" @click="buttonClickedFunc('AddFacultButton')">🔐Институт</v-btn>
             <v-btn evalation="4" class="buttonLeftStyle text-white" height="40" @click="buttonClickedFunc('AddUserButton')">🔐Пользователь</v-btn>
             <v-text class="text-gray-900  rounded-md w-52 h-52 mb-5  font-inter text-lg">ОСТАЛЬНОЕ</v-text>
             <v-btn evalation="4" class="hover:bg-red-400 bg-red-300 text-white buttonLeftStyle " @click="buttonClickedFunc  ('LeaveButton')" height="40">Выход</v-btn>

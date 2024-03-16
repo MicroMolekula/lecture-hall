@@ -3,6 +3,8 @@
     import FileDialog from './FileDialog.vue'
     import LectionDialog from './LectionDialog.vue';
     import Markdown from 'vue3-markdown-it'
+    import AudioDialog from './AudioDialog.vue';
+    import { AVWaveform } from 'vue-audio-visual'
     class File{
         name;
         creatingDate;
@@ -74,7 +76,7 @@
             
             <tr class="hover:bg-gray-300" @click="fileClickFunc">
                 <td class="w-4 p-1 pl-5">
-                    <img v-if="file.audio" src="../assets/logos/audioIcon.svg" alt="">
+                    <img class="imgStyle" v-if="file.audio" src="../assets/logos/audioIcon.svg" alt="">
                     <img class="imgStyle" v-else src="../assets/logos/docIcon.svg" alt="">
                 </td>
                 <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
@@ -90,8 +92,11 @@
                     {{ file.size }}
                 </td>
                 <td class="">
-                    <LectionDialog :activator="activatorProps" :title="file.name"></LectionDialog>
-                </td>
+                    <div class="flex">
+                        <AudioDialog v-if="file.audio"></AudioDialog>
+                        <LectionDialog :title="file.name"></LectionDialog>
+                    </div>
+                </td>   
             </tr>
         </tbody>
     </table>

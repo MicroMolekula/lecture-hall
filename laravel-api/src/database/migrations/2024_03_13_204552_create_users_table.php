@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('role');
             $table->foreignId('group_id')->nullable()
                 ->constrained('groups');
-            $table->rememberToken();
             $table->timestamps();
 
             $table->softDeletes();

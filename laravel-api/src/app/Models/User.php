@@ -14,6 +14,10 @@ class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
+    protected $casts = [
+        'password' => 'string'
+    ];
+
     public function group()
     {
         return $this->role === 'student' ? $this->belongsTo(Group::class, 'group_id') : null;

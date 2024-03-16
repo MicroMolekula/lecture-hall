@@ -16,6 +16,7 @@
     "material-design-icons-iconfont": "^6.7.0",
     "vite-plugin-vuetify": "^2.0.3",
     "vue": "^3.4.15",
+    "vue-audio-visual": "^3.0.7",
     "vue-axios": "^3.5.2",
     "vue3-markdown-it": "^1.0.10",
     "vuetify": "^3.5.9"
