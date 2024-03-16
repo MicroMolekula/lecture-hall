@@ -4,6 +4,7 @@
 namespace App\Client;
 use \GuzzleHttp\Client;
 use Illuminate\Support\Facades\Storage;
+use OpenAI\Laravel\Facades\OpenAI;
 
 
 class OpenAiClient
@@ -13,21 +14,16 @@ class OpenAiClient
 
     public function __construct()
     {
-        $this->openaiClient = \Tectalic\OpenAi\Manager::build(
-            new Client(),
-            new \Tectalic\OpenAi\Authentication(getenv('IGNITION_OPEN_AI_KEY'))
-        );
+        $this->openaiClient = OpenAI::audio();
     }
 
     public function audioText($path)
     {
-        $response = $this->openaiClient->audioTranscriptions()->create(
-            new \Tectalic\OpenAi\Models\AudioTranscriptions\CreateRequest([
-                'file' => $path,
-                'model' => 'whisper-1',
-            ])
-        )->toModel();
-
+        $response = $this->openaiClient->transcribe([
+            'model' => 'whisper-1',
+            'file' => fopen($path, 'r'),
+            'response_format' => 'verbose_json',
+        ]);
         return $response->text;
     }
 }
