@@ -26,7 +26,7 @@ Route::get('/test', \App\Http\Controllers\TestAudioController::class);
 Route::get('/users/test', [\App\Http\Controllers\UserController::class, 'test']);
 
 Route::get('/teachers', function () {
-    $teachers = User::where('role', 'teacher');
+    $teachers = User::where('role', 'teacher')->get();
     return \App\Http\Resources\UserResource::collection($teachers);
 });
 
