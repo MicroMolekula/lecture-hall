@@ -22,4 +22,4 @@ class SubjectResource extends JsonResource
         ];
     }
 }
-$userId = User::where('role', 'teacher')->pluck('id')->random();
+
