@@ -22,4 +22,9 @@ class Group extends Model
             'group_id',
             'subject_id');
     }
+
+    public function institute()
+    {
+        return $this->belongsTo(Institute::class, 'institute_id');
+    }
 }
