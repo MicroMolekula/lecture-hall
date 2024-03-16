@@ -19,7 +19,7 @@ class SubjectResource extends JsonResource
             'title' => $this->title,
             'image' => $this->image,
             'groups' => $this->groups,
-            'users' => $this->users
+            'users' => new UserResource($this->user)
         ];
     }
 }
