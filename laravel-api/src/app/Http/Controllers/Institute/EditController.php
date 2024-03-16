@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class EditController extends Controller
 {
-    public function __invoke(Institute $subject){
-        return InstituteResource::collection($subject);
+    public function __invoke(Institute $institute){
+        return InstituteResource::collection($institute);
     }
 }
