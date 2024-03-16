@@ -11,8 +11,10 @@ use Illuminate\Http\Request;
 class StoreController extends Controller
 {
     public function __invoke(InstituteStoreRequest $request){
-        $created_institute=Institute::create($request->validated());
-        return new InstituteResource($created_institute);
+        $data = $request->validated();
+        $institute=Institute::create($data);
+        $institute->groups()->attach($data['groups']);
+        return new InstituteResource($institute);
 
     }
 }
