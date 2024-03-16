@@ -29,14 +29,12 @@ class SubjectUserFactory extends Factory
             'subject_id' => function (array $attributes) use ($uniqueUserSubjectPairs) {
                 $subjectId = Subject::pluck('id')->random();
 
-                // Check if the combination already exists, if so, find a new one
                 while ($uniqueUserSubjectPairs->contains(function ($pair) use ($attributes, $subjectId) {
                     return $pair['user_id'] === $attributes['user_id'] && $pair['subject_id'] === $subjectId;
                 })) {
                     $subjectId = Subject::pluck('id')->random();
                 }
 
-                // Add the unique combination to the collection
                 $uniqueUserSubjectPairs->push([
                     'user_id' => $attributes['user_id'],
                     'subject_id' => $subjectId,
