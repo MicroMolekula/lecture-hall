@@ -2,8 +2,6 @@
 
 
 namespace App\Client;
-use \GuzzleHttp\Client;
-use Illuminate\Support\Facades\Storage;
 use OpenAI\Laravel\Facades\OpenAI;
 
 
