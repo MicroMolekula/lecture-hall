@@ -28,7 +28,7 @@
     <template v-slot:activator="{ props: activatorProps }">
       <v-btn v-bind="activatorProps" color="#60BBFB" icon="../assets/logos/plusIcon.svg" size="small">
         <img src="../assets/logos/plusIcon.svg" alt="">
-    </v-btn>
+      </v-btn>
     </template>
 
     <template v-slot:default="{ isActive }">

@@ -12,7 +12,9 @@ use App\Models\SubjectUser;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Testing\Fluent\Concerns\Has;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,9 +26,19 @@ class DatabaseSeeder extends Seeder
         $this->addInsitute(3);//3 раза должна быть запущена
         $this->addGroups(10);//10 раз должна быть запущена
         $this->addUsers(10, 20, 70);
+
         $this->addSubjects(8);//8 раз должна быть запущена
         $this->addGroupSubject(50);// не менее 30 раз должна быть запущена
         $this->addSubjectUser(50);//не менее 20 раз
+
+        User::factory(1)->state([
+            'login' => 'id-123456',
+            'password' => Hash::make('123456'),
+        ])->create();
+        $this->addSubjects(40);
+        $this->addGroupSubject(50);
+        $this->addSubjectUser(50);
+
         $this->addFiles();
     }
 

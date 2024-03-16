@@ -102,9 +102,11 @@ class UserFactory extends Factory
     public function definition(): array
     {
         $gender = random_int(0, 1);
+        $password = $this->faker->regexify('[0-9][!@#$%^&*][a-z][A-Z][0-9a-zA-Z!@#$%^&*]{6}');
+        $login = $this->faker->unique()->bothify('id-######');
         return [
-            'login' => $this->faker->unique()->bothify('???-######'),
-            'password' => $this->faker->password(),
+            'login' => $login,
+            'password' => Hash::make($password),
             'name' => $this->faker->randomElements($this->fio[$gender][0])[0],
             'middlename' => $this->faker->randomElements($this->fio[$gender][1])[0],
             'surname' => $this->faker->randomElements($this->fio[$gender][2])[0],

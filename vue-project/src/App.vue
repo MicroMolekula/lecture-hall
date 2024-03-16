@@ -8,6 +8,7 @@
 
   function hideLoginWindow(){
     loginShow.value = false
+    leftButtonCurrent.value = "SubjectButton"
     console.log(loginShow.value)
   }
   function login(){
@@ -19,6 +20,14 @@
     leftButtonCurrent.value = event
     drawVar.value = false
     console.log(event)
+    if(leftButtonCurrent.value == "LeaveButton"){
+      leaveButtonClicked()
+    }
+    
+  }
+
+  function leaveButtonClicked(){
+    loginShow.value = true
   }
 
   function reDrawed(bool){

@@ -7,7 +7,7 @@
 </script>
 
 <template>
-    <div class="w-5 bg-gray-50">
+    <div class="w-5 ">
         <FileTable/>
     </div>
 </template>
