@@ -32,3 +32,13 @@ Route::get('/subject/{subject}', \App\Http\Controllers\Subject\ShowController::c
 Route::get('/subject/{subject}/edit', \App\Http\Controllers\Subject\EditController::class)->name('subject.edit');
 Route::patch('/subject/{subject}', \App\Http\Controllers\Subject\UpdateController::class)->name('subject.update');
 Route::delete('/subject/{subject}',\App\Http\Controllers\Subject\DestroyController::class   )->name('subject.delete');
+
+
+
+Route::get('/institute', \App\Http\Controllers\Institute\IndexController::class)->name('institute.index');
+Route::get('/institute/create', \App\Http\Controllers\Institute\CreateController::class)->name('institute.create');
+Route::post('/institute', \App\Http\Controllers\Institute\StoreController::class)->name('institute.store');
+Route::get('/institute/{institute}', \App\Http\Controllers\Institute\ShowController::class)->name('institute.show');
+Route::get('/institute/{institute}/edit', \App\Http\Controllers\Institute\EditController::class)->name('institute.edit');
+Route::patch('/institute/{institute}', \App\Http\Controllers\Institute\UpdateController::class)->name('institute.update');
+Route::delete('/institute/{institute}',\App\Http\Controllers\Institute\DestroyController::class   )->name('institute.delete');
