@@ -21,12 +21,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->addInsitute(7);
-        $this->addGroups(10);
+        $this->addInsitute(3);//3 раза должна быть запущена
+        $this->addGroups(10);//10 раз должна быть запущена
         $this->addUsers(10, 20, 70);
-        $this->addSubjects(40);
-        $this->addGroupSubject(50);
-        $this->addSubjectUser(50);
+        $this->addSubjects(8);//8 раз должна быть запущена
+        $this->addGroupSubject(50);// не менее 30 раз должна быть запущена
+        $this->addSubjectUser(50);//не менее 20 раз
         $this->addFiles();
     }
 
