@@ -8,11 +8,11 @@
 </script>
 
 <template>
-    <div class="pa-4 text-center">
+    <div class="text-center">
       <v-dialog max-width="1400">
         <template v-slot:activator="{props: activatorProps }">
             <v-btn v-bind="activatorProps" color="#60BBFB" icon="../assets/logos/plusIcon.svg" size="small">
-                <img src="../assets/logos/additionIcon.svg" alt="">
+                <img src="../assets/logos/eyeIcon.svg" alt="">
             </v-btn>
         </template>
   

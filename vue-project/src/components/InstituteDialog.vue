@@ -1,17 +1,17 @@
 <script setup>
     import {onMounted, ref} from 'vue'
     function tryLoadFile(){
-      if(fileName.value.length != 0 && filePath.value.length != 0){
+      if(groupName.value.length != 0){
         message.value = "Загрузка..."
       }
-      message.value = "Поля не должны быть пустыми"
+      message.value = "Поле не должно быть пустыми"
     }
 
     let dialog = ref("false")
     let isActive = ref("false")
 
-    let fileName = ref("")
-    let filePath = ref("")
+    let instituteName = ref("")
+    let groups = ref("")
 
     let message = ref("")
 
@@ -32,12 +32,12 @@
     </template>
 
     <template v-slot:default="{ isActive }">
-      <v-card title="Загрузить лекцию">
+      <v-card title="Добавить институт">
         <f-form @submit.prevent>
         <v-card-text>
-          <v-text-field v-model="fileName" :rules="rule" label="Название файла"></v-text-field>
-          <v-file-input :messages="message" v-model="filePath" :rules="rule" prepend-icon="" label="Выберите файл"></v-file-input>
-          Выбирете mp3 или docx лекцию для загрузки
+          <v-text-field v-model="instituteName" :rules="rule" label="Название института"></v-text-field>
+          <v-select :messages="message" v-model="groups" prepend-icon="" label="Выберите группы"></v-select>
+    
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -47,9 +47,9 @@
             @click="isActive.value = false"
           ></v-btn>
           <v-btn
-            text="Загрузить"
+            text="Создать"
             type="submit"
-            @click="tryLoadFile"
+            @click="tryLoadFile; isActive.value = false"
           ></v-btn>
         </v-card-actions>
       </f-form>

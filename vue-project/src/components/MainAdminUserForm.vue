@@ -1,5 +1,5 @@
 <script setup>
-    import FileTable from './FileTable.vue'
+    import UserTable from './UserTable.vue';
     import SubjectCard from './SubjectCard.vue'
     import { createVuetify } from 'vuetify'
     import { ref } from 'vue'
@@ -8,6 +8,6 @@
 
 <template>
     <div class="w-5 ">
-        <FileTable/>
+        <UserTable></UserTable>
     </div>
 </template>
