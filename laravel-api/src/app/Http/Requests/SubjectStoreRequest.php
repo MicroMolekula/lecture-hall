@@ -23,7 +23,7 @@ class SubjectStoreRequest extends FormRequest
     {
 
         return [
-            'name'=>'required|max:255'
+            'title'=>'required|max:255'
         ];
     }
 }

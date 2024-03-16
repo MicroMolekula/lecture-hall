@@ -13,7 +13,7 @@ class TestAudioController extends Controller
     {
         ini_set('memory_limit', '1024M');
         $client = new OpenAiClient();
-        $path = Storage::path('public/test1.mp3');
+        $path = Storage::path('public/test.mp3');
         dd($client->audioText($path));
     }
 }
