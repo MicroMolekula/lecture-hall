@@ -21,9 +21,11 @@ class SubjectStoreRequest extends FormRequest
      */
     public function rules(): array
     {
-
         return [
-            'title'=>'required|max:255'
+            'title' => 'required|max:255',
+            'image' => '',
+            'groups' => '',
+            'teachers' => '',
         ];
     }
 }
