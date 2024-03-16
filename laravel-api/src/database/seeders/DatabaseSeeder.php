@@ -12,7 +12,9 @@ use App\Models\SubjectUser;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Testing\Fluent\Concerns\Has;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,6 +26,10 @@ class DatabaseSeeder extends Seeder
         $this->addInsitute(7);
         $this->addGroups(10);
         $this->addUsers(10, 20, 70);
+        User::factory(1)->state([
+            'login' => 'id-123456',
+            'password' => Hash::make('123456'),
+        ])->create();
         $this->addSubjects(40);
         $this->addGroupSubject(50);
         $this->addSubjectUser(50);
