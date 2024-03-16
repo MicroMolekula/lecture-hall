@@ -17,6 +17,9 @@ class SubjectResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'groups'=>$this->groups,
+            'users'=>$this->users
         ];
     }
 }
+$userId = User::where('role', 'teacher')->pluck('id')->random();

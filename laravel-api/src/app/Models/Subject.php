@@ -33,4 +33,5 @@ class Subject extends Model
     {
         return $this->hasMany(File::class, 'subject_id');
     }
+
 }
