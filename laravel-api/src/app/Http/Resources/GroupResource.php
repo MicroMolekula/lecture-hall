@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Http\Resources;
+namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -17,10 +17,7 @@ class GroupResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'institute_id' => $this->institute_id,
-            'users'=>$this->users,
-            'subjects'=>$this->subjects,
-            'institute'=>$this->institute,
+            'users'=> UserResource::collection($this->users),
         ];
     }
 }

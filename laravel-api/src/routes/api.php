@@ -62,6 +62,14 @@ Route::group([
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
+    Route::get('user_or_fail', function (){
+        try{
+            $user = auth()->userOrFail();
+            return new \App\Http\Resources\UserResource($user);
+        } catch (\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e){
+            return response()->json(['message' => $e->getMessage()]);
+        }
+    });
 });
 
 
