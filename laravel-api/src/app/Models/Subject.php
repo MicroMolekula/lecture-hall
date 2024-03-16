@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Subject extends Model
 {
     use HasFactory;
-    protected $fillable=['name'];
+    protected $fillable=['title'];
     public function users()
     {
         return $this->belongsToMany(
