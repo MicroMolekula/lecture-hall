@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,9 +25,13 @@ Route::post('/login', \App\Http\Controllers\LoginController::class);
 Route::get('/test', \App\Http\Controllers\TestAudioController::class);
 Route::get('/users/test', [\App\Http\Controllers\UserController::class, 'test']);
 
+Route::get('/teachers', function () {
+    $teachers = User::where('role', 'teacher');
+    return \App\Http\Resources\UserResource::collection($teachers);
+});
+
 
 Route::get('/subject', \App\Http\Controllers\Subject\IndexController::class)->name('subject.index');
-Route::get('/subject/create', \App\Http\Controllers\Subject\CreateController::class)->name('subject.create');
 Route::post('/subject', \App\Http\Controllers\Subject\StoreController::class)->name('subject.store');
 Route::get('/subject/{subject}', \App\Http\Controllers\Subject\ShowController::class)->name('subject.show');
 Route::get('/subject/{subject}/edit', \App\Http\Controllers\Subject\EditController::class)->name('subject.edit');
@@ -35,17 +40,10 @@ Route::patch('/subject/{subject}', \App\Http\Controllers\Subject\UpdateControlle
 Route::delete('/subject/{subject}', \App\Http\Controllers\Subject\DestroyController::class)->name('subject.delete');
 
 
-////////////////////////////////
-
-Route::apiResources([
-    'files' => \App\Http\Controllers\Api\FileController::class
-]);
-Route::delete('/subject/{subject}',\App\Http\Controllers\Subject\DestroyController::class   )->name('subject.delete');
 
 
 
 Route::get('/institute', \App\Http\Controllers\Institute\IndexController::class)->name('institute.index');
-Route::get('/institute/create', \App\Http\Controllers\Institute\CreateController::class)->name('institute.create');
 Route::post('/institute', \App\Http\Controllers\Institute\StoreController::class)->name('institute.store');
 Route::get('/institute/{institute}', \App\Http\Controllers\Institute\ShowController::class)->name('institute.show');
 Route::get('/institute/{institute}/edit', \App\Http\Controllers\Institute\EditController::class)->name('institute.edit');
@@ -75,7 +73,6 @@ Route::group([
 
 
 Route::get('/group', \App\Http\Controllers\Group\IndexController::class)->name('group.index');
-Route::get('/group/create', \App\Http\Controllers\Group\CreateController::class)->name('group.create');
 Route::post('/group', \App\Http\Controllers\Group\StoreController::class)->name('group.store');
 Route::get('/group/{group}', \App\Http\Controllers\Group\ShowController::class)->name('group.show');
 Route::get('/group/{group}/edit', \App\Http\Controllers\Group\EditController::class)->name('group.edit');
