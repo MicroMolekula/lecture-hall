@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Institute;
 
 
-use http\Client\Response;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class DestroyController extends Controller
 {

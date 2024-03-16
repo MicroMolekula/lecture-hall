@@ -10,9 +10,6 @@ use Illuminate\Http\Request;
 class ShowController extends Controller
 {
     public function __invoke(Group $group){
-
-        return new InstituteResource($group);
-
-
+        return new GroupResource($group);
     }
 }

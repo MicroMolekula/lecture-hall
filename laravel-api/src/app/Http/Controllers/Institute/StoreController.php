@@ -7,7 +7,6 @@ use App\Http\Requests\InstituteStoreRequest;
 use App\Http\Resources\InstituteResource;
 use App\Models\Group;
 use App\Models\Institute;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class StoreController extends Controller
