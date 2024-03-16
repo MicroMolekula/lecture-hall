@@ -39,7 +39,6 @@ Route::delete('/subject/{subject}', \App\Http\Controllers\Subject\DestroyControl
 Route::apiResources([
     'files' => \App\Http\Controllers\Api\FileController::class
 ]);
-
 Route::delete('/subject/{subject}',\App\Http\Controllers\Subject\DestroyController::class   )->name('subject.delete');
 
 
