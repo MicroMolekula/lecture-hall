@@ -1,5 +1,6 @@
 <script setup>
     import {ref} from 'vue'
+    import FileDialog from './FileDialog.vue'
     class File{
         name;
         creatingDate;
@@ -13,6 +14,14 @@
             this.size = size;
         }
     }
+
+    const emit = defineEmits('loadButtonClicked')
+
+    function loadButtonFunc(){
+        emit('loadButtonClicked')
+    }
+
+
     let file1 = new File("Назв","Дата создание","png","12mb")
     let file2 = new File("awe1231","asdsa","qewq","qwewq")
     let file3 = new File("qweqweowqjiojdaiojdioaxdjas","asdsa","qewq","qwewq")
@@ -21,16 +30,14 @@
 
 <template>
  <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-   
+    
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 ">
         <thead class="text-xs text-wheat uppercase bg-gray-50  ">
             <tr>
                 <th scope="col" class="w-20">
                     <v-col cols="auto" class="pl-5">
-                        <v-btn color="#60BBFB" icon="../assets/logos/plusIcon.svg" size="small">
-                            <img src="../assets/logos/plusIcon.svg" alt="">
-                        </v-btn>
                         
+                        <FileDialog></FileDialog>
                     </v-col>
                 </th>
                 <th scope="col" class="px-6 py-3">

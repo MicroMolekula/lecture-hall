@@ -17,7 +17,7 @@ class InstituteFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'title' => $this->faker->regexify('[A-Z][A-Z][A-Z]'),
         ];
     }
 }

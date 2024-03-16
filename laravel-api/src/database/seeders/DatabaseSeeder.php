@@ -3,12 +3,15 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\File;
 use App\Models\Group;
 use App\Models\GroupSubject;
+use App\Models\Institute;
 use App\Models\Subject;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,13 +20,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->addGroups();
-        $this->addUsers();
-        $this->addSubjects();
-        $this->addGroupSubject();
+        $this->addInsitute(7);
+        $this->addGroups(10);
+        $this->addUsers(10, 20, 70);
+        $this->addSubjects(40);
+        $this->addGroupSubject(50);
+        $this->addFiles();
     }
 
-    private function addGroups()
+    private function addGroups($count)
     {
 //        $groups = [
 //            'ПИ-21-1',
@@ -38,18 +43,18 @@ class DatabaseSeeder extends Seeder
 //                'title' => $group,
 //            ]);
 //        }
-        Group::factory(10)->create();
+        Group::factory($count)->create();
     }
 
-    private function addUsers()
+    private function addUsers($countAdmin, $countTeacher, $countStudent)
     {
-        User::factory(10)->state(
+        User::factory($countAdmin)->state(
             ['role' => 'admin',]
         )->create();
-        User::factory(20)->state(
+        User::factory($countTeacher)->state(
             ['role' => 'teacher',]
         )->create();
-        User::factory(70)->state(new Sequence(
+        User::factory($countStudent)->state(new Sequence(
             fn (Sequence $sequence) => [
                 'role' => 'student',
                 'group_id' => Group::all()->random(1)[0]->id
@@ -57,14 +62,23 @@ class DatabaseSeeder extends Seeder
         ))->create();
     }
 
-    private function addSubjects()
+    private function addSubjects($count)
     {
-        Subject::factory(30)->create();
+        Subject::factory($count)->create();
     }
 
-
-    private function addGroupSubject()
+    private function addGroupSubject($count)
     {
-        GroupSubject::factory(80)->create();
+        GroupSubject::factory($count)->create();
+    }
+
+    private function addInsitute($count)
+    {
+        Institute::factory($count)->create();
+    }
+
+    private function addFiles()
+    {
+        File::factory(1)->create();
     }
 }

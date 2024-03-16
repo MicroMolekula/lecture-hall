@@ -18,3 +18,15 @@ Route::get('/', function () {
 });
 
 
+
+
+Route::group(['namespace'=>'Subject'], function(){
+    Route::get('/subject', 'IndexController')->name('subject.index');
+    Route::get('/subject/create', 'CreateController')->name('subject.create');
+    Route::post('/subject', 'StoreController')->name('subject.store');
+    Route::get('/subject/{subject}', 'ShowController')->name('subject.show');
+    Route::get('/subject/{subject}/edit', 'EditController')->name('subject.edit');
+    Route::patch('/subject/{subject}', 'UpdateController')->name('subject.update');
+    Route::delete('/subject/{subject}', 'DestroyController')->name('subject.delete');
+});
+
