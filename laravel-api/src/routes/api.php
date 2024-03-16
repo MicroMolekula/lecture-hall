@@ -72,4 +72,7 @@ Route::get('/group/{group}/edit', \App\Http\Controllers\Group\EditController::cl
 Route::patch('/group/{group}', \App\Http\Controllers\Group\UpdateController::class)->name('group.update');
 Route::delete('/group/{group}',\App\Http\Controllers\Group\DestroyController::class   )->name('group.delete');
 
+Route::apiResources([
+    'file' => \App\Http\Controllers\Api\FileController::class
+]);
 

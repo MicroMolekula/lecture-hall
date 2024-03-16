@@ -1,9 +1,14 @@
 <?php
 
-namespace app\Http\Resources;
+namespace App\Http\Resources;
+
+
+
+
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+
 
 class FileResource extends JsonResource
 {
@@ -17,6 +22,10 @@ class FileResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'type' => $this->type,
+            'user_id' => $this->user_id,
+            'subject_id' => $this->subject_id,
+            'user' => new UserResource($this->user),
         ];
     }
 }

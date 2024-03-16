@@ -9,9 +9,11 @@ class File extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['title', 'path', 'type', 'description', 'user_id', 'subject_id'];
+
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function subject()
