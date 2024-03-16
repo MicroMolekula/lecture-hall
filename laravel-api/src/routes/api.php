@@ -25,13 +25,21 @@ Route::get('/test', \App\Http\Controllers\TestAudioController::class);
 Route::get('/users/test', [\App\Http\Controllers\UserController::class, 'test']);
 
 
-
 Route::get('/subject', \App\Http\Controllers\Subject\IndexController::class)->name('subject.index');
 Route::get('/subject/create', \App\Http\Controllers\Subject\CreateController::class)->name('subject.create');
 Route::post('/subject', \App\Http\Controllers\Subject\StoreController::class)->name('subject.store');
 Route::get('/subject/{subject}', \App\Http\Controllers\Subject\ShowController::class)->name('subject.show');
 Route::get('/subject/{subject}/edit', \App\Http\Controllers\Subject\EditController::class)->name('subject.edit');
 Route::patch('/subject/{subject}', \App\Http\Controllers\Subject\UpdateController::class)->name('subject.update');
+
+Route::delete('/subject/{subject}', \App\Http\Controllers\Subject\DestroyController::class)->name('subject.delete');
+
+
+////////////////////////////////
+
+Route::apiResources([
+    'files' => \App\Http\Controllers\Api\FileController::class
+]);
 Route::delete('/subject/{subject}',\App\Http\Controllers\Subject\DestroyController::class   )->name('subject.delete');
 
 
@@ -65,4 +73,5 @@ Route::get('/group/{group}', \App\Http\Controllers\Group\ShowController::class)-
 Route::get('/group/{group}/edit', \App\Http\Controllers\Group\EditController::class)->name('group.edit');
 Route::patch('/group/{group}', \App\Http\Controllers\Group\UpdateController::class)->name('group.update');
 Route::delete('/group/{group}',\App\Http\Controllers\Group\DestroyController::class   )->name('group.delete');
+
 
