@@ -18,7 +18,7 @@ class GroupResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'institute_id' => $this->institute_id,
-            'users'=>$this->users,
+            'users'=> new UserResource($this->user),
         ];
     }
 }
