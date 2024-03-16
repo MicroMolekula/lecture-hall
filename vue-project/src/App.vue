@@ -15,13 +15,24 @@
     console.log("logined")
   }
 
+  function leftPanelButtonClicked(event){
+    leftButtonCurrent.value = event
+    drawVar.value = false
+    console.log(event)
+  }
+
+  function reDrawed(bool){
+    drawVar.value = bool
+  }
+  let drawVar = ref("false")
+  let leftButtonCurrent = ref("")
 </script>
 
 <template>
   <div class="flex">
     <LoginWindow @successfulJoin="login" v-show="loginShow"/>
-    <LeftPanel name="ЛГТУ Лекции"/>
-    <Main/>
+    <LeftPanel @buttonClickedEvent="leftPanelButtonClicked" name="ЛГТУ Лекции"/>
+    <Main :currentButton="leftButtonCurrent" @drawCall="reDrawed" :reDrawed="drawVar"/>
   </div>
   
 </template>
