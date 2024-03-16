@@ -23,7 +23,8 @@ class InstituteStoreRequest extends FormRequest
     {
 
         return [
-            'title'=>'required|max:255'
+            'title'=>'required|max:255',
+            'groups' => ''
         ];
     }
 }

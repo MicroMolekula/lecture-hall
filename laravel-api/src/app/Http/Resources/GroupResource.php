@@ -17,7 +17,6 @@ class GroupResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'institute_id' => $this->institute_id,
             'users'=> UserResource::collection($this->users),
         ];
     }

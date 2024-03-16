@@ -17,8 +17,7 @@ class InstituteResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'groups'=>$this->groups,
-
+            'groups'=> GroupResource::collection($this->groups),
         ];
     }
 }

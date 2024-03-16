@@ -33,7 +33,7 @@ class UpdateController extends Controller
             DB::commit();
         } catch (\Exception $exception){
             DB::rollBack();
-            return $exception->getMessage();
+            return response()->json(['message' => $exception->getMessage()]);
         }
         return new SubjectResource($subject);
     }
