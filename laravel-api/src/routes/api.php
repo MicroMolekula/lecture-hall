@@ -42,3 +42,13 @@ Route::get('/institute/{institute}', \App\Http\Controllers\Institute\ShowControl
 Route::get('/institute/{institute}/edit', \App\Http\Controllers\Institute\EditController::class)->name('institute.edit');
 Route::patch('/institute/{institute}', \App\Http\Controllers\Institute\UpdateController::class)->name('institute.update');
 Route::delete('/institute/{institute}',\App\Http\Controllers\Institute\DestroyController::class   )->name('institute.delete');
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth',
+], function ($router) {
+    Route::post('login', 'AuthController@login');
+    Route::post('logout', 'AuthController@logout');
+    Route::post('refresh', 'AuthController@refresh');
+    Route::post('me', 'AuthController@me');
+});
