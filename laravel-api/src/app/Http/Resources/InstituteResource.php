@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources;
+namespace app\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class SubjectResource extends JsonResource
+class InstituteResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,7 +18,7 @@ class SubjectResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'groups'=>$this->groups,
-            'users'=>$this->users
+
         ];
     }
 }

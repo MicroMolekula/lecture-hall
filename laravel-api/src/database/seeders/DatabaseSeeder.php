@@ -8,6 +8,7 @@ use App\Models\Group;
 use App\Models\GroupSubject;
 use App\Models\Institute;
 use App\Models\Subject;
+use App\Models\SubjectUser;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
@@ -25,6 +26,7 @@ class DatabaseSeeder extends Seeder
         $this->addUsers(10, 20, 70);
         $this->addSubjects(40);
         $this->addGroupSubject(50);
+        $this->addSubjectUser(50);
         $this->addFiles();
     }
 
@@ -80,5 +82,10 @@ class DatabaseSeeder extends Seeder
     private function addFiles()
     {
         File::factory(1)->create();
+    }
+
+    private function addSubjectUser($count)
+    {
+        SubjectUser::factory($count)->create();
     }
 }

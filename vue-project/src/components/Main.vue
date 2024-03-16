@@ -4,12 +4,14 @@
      import MainSubjectContainer from './MainSubjectContainer.vue'
      import {ref, watch} from 'vue'
      import MainAdminSubjectForm from './MainAdminSubjectForm.vue'
+
+
+
      const props = defineProps({
         userId : Number,
         currentButton : String,
         reDrawed : Boolean,
     })
-
     const emit = defineEmits(['drawCall'])
 
     watch(props, (newCurrentButton) => {
@@ -49,7 +51,6 @@
 <template>
     <div class="table w-full h-auto">
         <div class="table-row h-10"><Header/></div>
-
         <MainFileContainer v-show="showFiles" class="table-row"/>
         <MainAdminSubjectForm v-show="showAdminSubjectForm" class="table-row"/>
         <MainSubjectContainer v-show="showSubjectContainer" @cardClick="onCardClicked"  class="table-row"/>

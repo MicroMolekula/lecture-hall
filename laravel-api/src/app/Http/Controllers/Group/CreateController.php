@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Subject;
+namespace App\Http\Controllers\Group;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\SubjectResource;
+use App\Http\Resources\GroupResource;
 use Illuminate\Http\Request;
 
 class CreateController extends Controller
@@ -26,6 +26,6 @@ class CreateController extends Controller
         $subject->save();
 
         // Редирект на страницу, отображающую добавленный элемент, или на другую страницу
-        return new SubjectResource($subject);
+        return new GroupResource($subject);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Subject;
+namespace App\Http\Controllers\Institute;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\SubjectResource;

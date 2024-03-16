@@ -18,14 +18,4 @@ class File extends Model
     {
         return $this->belongsTo(Subject::class, 'subject_id');
     }
-
-    public function files()
-    {
-        return $this->hasMany(File::class, 'file_id');
-    }
-
-    public function childrenFiles()
-    {
-        return $this->hasMany(File::class, 'file_id')->with('files');
-    }
 }
