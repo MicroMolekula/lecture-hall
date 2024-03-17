@@ -27,7 +27,7 @@ class FileUploadController extends Controller
         $file = File::create([
             'title' => $filename,
             'path' => $path,
-            'type' => $ext === 'mp3' ? 'audio' : 'text',
+            'type' => $ext,
             'user_id' => auth()->user()->id,
             'subject_id' => $subject->id,
         ]);
