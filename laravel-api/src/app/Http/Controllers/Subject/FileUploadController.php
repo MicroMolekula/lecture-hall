@@ -15,6 +15,7 @@ class FileUploadController extends Controller
     public function __invoke(Subject $subject, Request $request)
     {
         $uploadedFile = $request->file('file');
+
         $filename = $uploadedFile->getClientOriginalName();
         $ext = $uploadedFile->getClientOriginalExtension();
         $path = Storage::disk('local')->putFileAs(
