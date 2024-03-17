@@ -8,6 +8,8 @@ services:
     volumes:
       - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - ./src:/var/www/laravel
+#      - ./src/storage/app:/var/www/laravel/storage/app:ro
+#      - ./src/public:/var/www/laravel/public:ro
   php:
     build: ./docker/php
     container_name: php-fpm

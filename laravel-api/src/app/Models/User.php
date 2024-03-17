@@ -25,13 +25,19 @@ class User extends Authenticatable implements JWTSubject
 
     public function subjects()
     {
-        return $this->role === 'teacher' ?
-            $this->belongsToMany(
+        return $this->belongsToMany(
                 Subject::class,
                 'subject_users',
                 'user_id',
                 'subject_id'
-            ) : null;
+            );
+        //return $this->role === 'teacher' ?
+        //    $this->belongsToMany(
+        //        Subject::class,
+        //        'subject_users',
+        //        'user_id',
+        //        'subject_id'
+        //    ) : null;
     }
 
     public function files()

@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->addInsitute(3);//3 раза должна быть запущена
-        $this->addGroups(10);//10 раз должна быть запущена
+        $this->addGroups();
         $this->addUsers(10, 20, 70);
 
         $this->addSubjects(8);//8 раз должна быть запущена
@@ -35,29 +35,32 @@ class DatabaseSeeder extends Seeder
             'login' => 'id-123456',
             'password' => Hash::make('123456'),
         ])->create();
-        $this->addSubjects(40);
-        $this->addGroupSubject(50);
-        $this->addSubjectUser(50);
+
+
 
         $this->addFiles();
     }
 
-    private function addGroups($count)
+    private function addGroups()
     {
-//        $groups = [
-//            'ПИ-21-1',
-//            'АС-21-1',
-//            'АИ-21-1',
-//            'АИ-21-2',
-//            'АС-21-2',
-//            'С-AC-20-1',
-//        ];
-//        foreach ($groups as $group){
-//            Group::create([
-//                'title' => $group,
-//            ]);
-//        }
-        Group::factory($count)->create();
+        $groups = [
+            ["group" => 'ПИ-21-1', "institute_id" => 1],
+            ["group" => 'АС-21-1', "institute_id" => 2],
+            ["group" => 'АИ-21-1', "institute_id" => 3],
+            ["group" => 'ЭО-21-2', "institute_id" => 1],
+            ["group" => 'ПМ-20-1', "institute_id" => 2],
+            ["group" => 'AC-20-2', "institute_id" => 3],
+            ["group" => 'ПИ-22-1', "institute_id" => 1],
+            ["group" => 'ПИ-20-1', "institute_id" => 2],
+            ["group" => 'ЭО-20-1', "institute_id" => 3],
+        ];
+        foreach ($groups as $group) {
+            Group::create([
+                'title' => $group['group'],
+                'institute_id' => $group['institute_id']
+            ]);
+        }
+        //Group::factory($count)->create();
     }
 
     private function addUsers($countAdmin, $countTeacher, $countStudent)
@@ -69,7 +72,7 @@ class DatabaseSeeder extends Seeder
             ['role' => 'teacher',]
         )->create();
         User::factory($countStudent)->state(new Sequence(
-            fn (Sequence $sequence) => [
+            fn(Sequence $sequence) => [
                 'role' => 'student',
                 'group_id' => Group::all()->random(1)[0]->id
             ],
