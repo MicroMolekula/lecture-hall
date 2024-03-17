@@ -40,6 +40,8 @@ Route::post('/subject/{subject}/fileUpload', \App\Http\Controllers\Subject\FileU
 Route::patch('/subject/{subject}', \App\Http\Controllers\Subject\UpdateController::class)->name('subject.update');
 Route::delete('/subject/{subject}', \App\Http\Controllers\Subject\DestroyController::class)->name('subject.delete');
 
+Route::get('/file/{file}', \App\Http\Controllers\File\WhisperController::class);
+
 
 //Route::apiResources([
 //   'files' => \App\Http\Controllers\Api\FileController::class
