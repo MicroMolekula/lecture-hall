@@ -27,6 +27,8 @@ class FileController extends Controller
      */
     public function store(StoreRequest $request)
     {
+        $uploadedFile = $request->file();
+        dd($uploadedFile);
         $created_file = File::create($request->validated());
         return new FileResource($created_file);
     }
