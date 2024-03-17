@@ -14,12 +14,83 @@
         reader.readAsDataURL(event.target.files[0])
     }
 
+    function getTeachers(){
+        const requestOptions = {
+                method: "GET",
+                headers: { 'authorization': `Bearer ${localStorage.access_token}`},
+                body: null,
+                };
+        
+            fetch("http://localhost/api/teachers", requestOptions)
+            .then(response =>{
+                if(response.ok){
+                    return response.json()
+                }
+                throw new Error('error')
+            })
+            .then(data => teacherList.value = data.data )
+            .catch((error)=>{
+                console.log(error.message)
+            })
+    }
+
+    function getGroups(){
+        const requestOptions = {
+                method: "GET",
+                headers: { 'authorization': `Bearer ${localStorage.access_token}`},
+                body: null,
+                };
+        
+            fetch("http://localhost/api/group", requestOptions)
+            .then(response =>{
+                if(response.ok){
+                    return response.json()
+                }
+                throw new Error('error')
+            })
+            .then(data => groupList.value = data.data )
+            .catch((error)=>{
+                console.log(error.message)
+            })
+    }
+
+    function addSubject(){
+        let template = {title : subjectName.value, groups: groupModel.value, teachers:teacherModel.value}
+        let req = JSON.stringify(template)
+        console.log(req)
+        const requestOptions = {
+                method: "POST",
+                headers: { 'authorization': `Bearer ${localStorage.access_token}`},
+                body: JSON.stringify(req),
+                };
+        
+            fetch("http://localhost/api/subject", requestOptions)
+            .then(response =>{
+                if(response.ok){
+                    return response.json()
+                }
+                throw new Error('error')
+            })
+            .then(data => console.log(data) )
+            .catch((error)=>{
+                console.log(error)
+            })
+    }
+    
+
     function onInputClear(){
         image.value = ""
     }
 
     let subjectName = ref(" ")
     let image = ref(null)
+    let teacherList = ref([])
+    let teacherModel = ref([])
+
+    let groupList = ref([])
+    let groupModel = ref([])
+    getGroups()
+    getTeachers()
 </script>
 
 <template>
@@ -30,13 +101,16 @@
                 <subject-card class="mb-5" :name="subjectName" :image="image"></subject-card>
                 <v-text-field label="Название предмета"  v-model="subjectName"></v-text-field>
                 <v-file-input accept="image/*" @click:clear="onInputClear" @input="onFileSelected" class="w-72" prepend-icon="" color="data" variant="solo-filled" bg-color="blue" label="📌 Прикрепить фото на карточку"> </v-file-input>
-                <v-btn color="success" prepend-icon="mdi-check-circle">Добавить новый предмет</v-btn>
+                <v-btn @click="addSubject" color="success" prepend-icon="mdi-check-circle">Добавить новый предмет</v-btn>
             </div>
             <div class="block w-1/3 h-auto p-5">
                 <v-select
                     label="Добавить преподавателей"
                     chips
-                    :items="['Качановский Юрий', 'Седых Ирина', 'Алексеев Владимир', 'Водопьянов Сергей', 'Texas', 'Wyoming']"
+                    v-model="teacherModel"
+                    :items="teacherList"
+                    item-value="id" 
+                    item-title="name"
                     multiple
                 ></v-select>
             </div>
@@ -44,7 +118,10 @@
                 <v-select
                     label="Добавить группы"
                     chips
-                    :items="['Качановский Юрий', 'Седых Ирина', 'Алексеев Владимир', 'Водопьянов Сергей', 'Texas', 'Wyoming']"
+                    :items="groupList"
+                    v-model="groupModel"
+                    item-value="id"
+                    item-title="title"
                     multiple
             ></v-select>
             </div>

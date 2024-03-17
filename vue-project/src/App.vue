@@ -28,6 +28,7 @@
 
   function leaveButtonClicked(){
     loginShow.value = true
+    localStorage.access_token = ""
   }
 
   function reDrawed(bool){

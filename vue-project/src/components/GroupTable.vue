@@ -12,9 +12,53 @@
         constructor(name,students){
             this.name = name;
             this.students = students;
-          
         }
     }
+
+    let groupData
+    let allUsersData
+
+    function getAllUsers(){
+        const requestOptions = {
+                method: "GET",
+                headers: { 'authorization': `Bearer ${localStorage.access_token}`},
+                body: null,
+                };
+        
+            fetch("http://localhost/api/users", requestOptions)
+            .then(response =>{
+                if(response.ok){
+                    return response.json()
+                }
+                throw new Error('error')
+            })
+            .then(data => {allUsersData = data.data; loadUsers()})
+            .catch((error)=>{
+                console.log(error)
+            })
+    }
+
+    function getGroupData(){
+        const requestOptions = {
+                method: "GET",
+                headers: { 'authorization': `Bearer ${localStorage.access_token}`},
+                body: null,
+                };
+        
+            fetch("http://localhost/api/group", requestOptions)
+            .then(response =>{
+                if(response.ok){
+                    return response.json()
+                }
+                throw new Error('error')
+            })
+            .then(data => {groupData = data.data; loadGroups()})
+            .catch((error)=>{
+                console.log(error)
+            })
+    }
+
+   
 
     const emit = defineEmits('loadButtonClicked')
 
@@ -22,11 +66,30 @@
         emit('loadButtonClicked')
     }
     
+    function loadUsers(){
+        for(let i = 0 ; i < allUsersData.length; i++){
+            //let u = {id:allUsersData[i].id,name : allUsersData[i].name +" "+ allUsersData[i].surname}
+            let u = allUsersData[i].name +" "+ allUsersData[i].surname
+            users.value.push(u)
+        }
+    }
 
-    let g1 = new Group("ПИ",["пп","png","12mb"])
-    let g2 = new Group("АИ",["пп","png","12mb"])
+    function loadGroups(){
+        for(let i = 0 ; i < groupData.length ; i++){
+            let users = []
+            for(let j = 0 ; j < groupData[i].users.length;j++){
+                users.push(groupData[i].users[j].name +" "+ groupData[i].users[j].surname)
+            }
+            let gNew = new Group(groupData[i].title,users)
+            groups.value.push(gNew)
+        } 
+    }
+
  
-    let groups = ref([g1,g2])
+    let groups = ref([])
+    let users = ref([])
+    getGroupData()
+    getAllUsers()
 </script>
 
 <template>
@@ -52,9 +115,9 @@
                 </th>
             </tr>
         </thead>
-        <tbody v-for="group in groups">
+        <tbody >
             
-            <tr class="hover:bg-gray-300" @click="fileClickFunc">
+            <tr v-for="group in groups" class="hover:bg-gray-300" @click="fileClickFunc">
                 <td class="w-4 p-1 pl-5">
                     <div></div>
                 </td>
@@ -66,7 +129,9 @@
                     <v-select
                         label="Добавить студентов"
                         chips
-                        :items=group.students
+                        :items="users"
+                        v-model="group.students"
+                        return-object
                         multiple
                     ></v-select>
                 </td>

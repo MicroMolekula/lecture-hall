@@ -13,6 +13,30 @@
         reDrawed : Boolean,
     })
     const emit = defineEmits(['drawCall'])
+    let userData = ref({data:{name:"name",surname:"surname"}})
+    getUserData()
+
+    function getUserData(){
+        const requestOptions = {
+                method: "GET",
+                headers: { 'authorization': `Bearer ${localStorage.access_token}`},
+                body: null,
+                };
+        
+            fetch("http://localhost/api/auth/user_or_fail", requestOptions)
+            .then(response =>{
+                if(response.ok){
+                    return response.json()
+                }
+                throw new Error('error')
+            })
+            .then(data => userData.value = data )
+            .catch((error)=>{
+                console.log(error.message)
+            })
+    }
+    
+   
 
     watch(props, (newCurrentButton) => {
         unseeAll()
@@ -73,7 +97,7 @@
 
 <template>
     <div class="table w-full h-auto">
-        <div class="table-row h-10"><Header name="Олег" surname="Неолег" :headerTitle="headerTitle"/></div>
+        <div class="table-row h-10"><Header :name="userData.data.name" :surname="userData.data.surname" :headerTitle="headerTitle"/></div>
         <MainFileContainer v-show="showFiles" class="table-row"/>
         <MainAdminSubjectForm v-show="showAdminSubjectForm" class="table-row"/>
         <MainSubjectContainer v-show="showSubjectContainer" @cardClick="onCardClicked"  class="table-row"/>
