@@ -1,22 +1,63 @@
 <script setup>
-    import {ref} from 'vue'
+    import {ref,watch} from 'vue'
     import FileDialog from './FileDialog.vue'
     import LectionDialog from './LectionDialog.vue';
     import Markdown from 'vue3-markdown-it'
     import AudioDialog from './AudioDialog.vue';
     import { AVWaveform } from 'vue-audio-visual'
+    import axios from 'axios';
+    const props = defineProps({
+        id : Number
+    })
+
+
+    watch(props, (newValue, oldValue) => {
+        console.log("p " + props.id)
+        loadFiles(props.id)
+        idSubj.value = props.id
+    })
+    let idSubj = ref('props.id')
+    function loadFiles(id){
+        files.value.length = 0
+        let requestOptions = {
+                headers: { 'authorization': `Bearer ${localStorage.access_token}`},
+                };
+            
+            axios.get('http://localhost/api/subject/'+id,requestOptions)
+            .then(response =>{
+                if(response.status == 200){
+                    return response
+                }
+                else{
+                    console.log(response)
+                    throw new Error('error')
+                }
+                
+            })
+            .then(data => {
+                console.log(data.data.data.files);
+                let dataF = data.data.data.files
+                for(let i = 0 ; i < dataF.length; i++){
+                    console.log(dataF[i])
+                    files.value.push(new File(dataF[i].title,"17.03.2024",dataF[i].type))
+                }
+                 
+                } )
+            .catch((error)=>{
+                console.log(error)
+            })   
+    }
     class File{
         name;
         creatingDate;
         type;
         audio;
-        size;
 
-        constructor(name,creatingDate,type,size){
+
+        constructor(name,creatingDate,type){
             this.name = name;
             this.creatingDate = creatingDate;
             this.type = type;
-            this.size = size;
             if(type=="mp3"){
                 this.audio = true;
             }
@@ -52,7 +93,7 @@
                 <th scope="col" class="w-20">
                     <v-col cols="auto" class="pl-5">
                         
-                        <FileDialog></FileDialog>
+                        <FileDialog :id="idSubj"></FileDialog>
                     </v-col>
                 </th>
                 <th scope="col" class="px-6 py-3">
@@ -63,9 +104,6 @@
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Тип файла
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Размер
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Действие
@@ -87,9 +125,6 @@
                 </td>
                 <td class="px-6 py-4">
                     {{ file.type }}
-                </td>
-                <td class="px-6 py-4">
-                    {{ file.size }}
                 </td>
                 <td class="">
                     <div class="flex">

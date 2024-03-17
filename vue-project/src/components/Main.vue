@@ -59,6 +59,7 @@
         showFiles.value = true
         headerTitle.value = "Лекции"
         subjIdCurrent.value = id
+        filesComponent.value.loadFilesById(id)
         console.log(id)
         console.log(showFiles)
     }
@@ -101,16 +102,17 @@
 
     let subjComponent = ref()
     let subjIdCurrent = ref(0)
-    let MainFileContainerRef = ref()
+    let filesComponent = ref()
+
     subjComponent.value = "subjComponent"
-    
+    filesComponent.value = "filesComponent"
 
 </script>
 
 <template>
     <div class="table w-full h-auto">
         <div v-if="showHeader" class="table-row h-10"><Header :name="userData.data.name" :surname="userData.data.surname" :headerTitle="headerTitle"/></div>
-        <MainFileContainer ref="subjComponent" :id="subjIdCurrent" v-show="showFiles" class="table-row"/>
+        <MainFileContainer ref="filesComponent" :id="subjIdCurrent" v-show="showFiles" class="table-row"/>
         <MainAdminSubjectForm v-show="showAdminSubjectForm" class="table-row"/>
         <MainSubjectContainer ref="subjComponent" v-show="showSubjectContainer" @cardClick="onCardClicked"  class="table-row"/>
         <MainAdminGroupForm v-show="showAdminGroupForm" class="table-row"></MainAdminGroupForm>
