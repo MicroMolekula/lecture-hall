@@ -16,8 +16,12 @@ class SubjectFactory extends Factory
      */
     public function definition(): array
     {
+        $subjects = [
+            'Математика', 'Физика', 'Химия', 'История',
+            'Литература', 'Биология', 'Экономика', 'География'
+        ];
         return [
-            'title' => $this->faker->sentence(2),
+            'title' => $this->faker->unique()->randomElement($subjects),
         ];
     }
 }

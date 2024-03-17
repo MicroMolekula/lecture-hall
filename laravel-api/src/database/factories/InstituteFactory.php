@@ -14,10 +14,15 @@ class InstituteFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
+
+
     public function definition(): array
     {
+        $institutes = ['ИМИТ', 'ИСА', 'ИКН'];
         return [
-            'title' => $this->faker->regexify('[A-Z][A-Z][A-Z]'),
+            'title' => $this->faker->unique()->randomElement($institutes),
         ];
     }
 }
+

@@ -17,9 +17,24 @@ class GroupFactory extends Factory
      */
     public function definition(): array
     {
+        $groups = [
+            'ПИ-21-1', 'АИ-21-1', 'АС-21-1', 'ПИ-20-1', 'AИ-23-1', 'АС-21-2', 'АС-22-1', 'АИ-22-1', 'ПИ-22-1', 'ПИ-22-2'
+        ];
+
+        // Создаем массив, который будет содержать первые две буквы и соответствующие им институты
+        $institutes = [
+            'ПИ' => 1, // ПИ соответствует институту с id 1
+            'АИ' => 2, // АИ соответствует институту с id 2
+            'АС' => 3, // АС соответствует институту с id 3
+            // Добавьте другие институты по мере необходимости
+        ];
+
+        $randomGroup = $this->faker->unique()->randomElement($groups);
+        $instituteId = $institutes[substr($randomGroup, 0, 2)];
+
         return [
-            'title' => $this->faker->regexify('[A-Z]{2}-2[0-3]-[12]'),
-            'institute_id' => Institute::all()->random(1)->firstOrFail(),
+            'title' => $randomGroup,
+            'institute_id' => $instituteId,
         ];
     }
 }
