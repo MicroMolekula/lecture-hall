@@ -30,7 +30,7 @@
                 }
                 throw new Error('error')
             })
-            .then(data => userData.value = data )
+            .then(data => {userData.value = data; showHeader.value = true} )
             .catch((error)=>{
                 console.log(error.message)
             })
@@ -41,9 +41,11 @@
     watch(props, (newCurrentButton) => {
         unseeAll()
         makeSee(props.currentButton)
+        
         emit('drawCall',true)
     })
 
+    let showHeader = ref(false)
     let showFiles = ref(false)
     let showAdminSubjectForm = ref(false)
     let showSubjectContainer = ref(false)
@@ -56,6 +58,8 @@
         unseeAll()
         showFiles.value = true
         headerTitle.value = "Лекции"
+        subjIdCurrent.value = id
+        console.log(id)
         console.log(showFiles)
     }
     function unseeAll(){
@@ -79,6 +83,7 @@
         if(buttonArg == "SubjectButton"){
             showSubjectContainer.value = true
             headerTitle.value = "Список предметов"
+            subjComponent.value.getSubjects()
         }
         if(buttonArg == "AddGroupButton"){
             showAdminGroupForm.value = true
@@ -93,14 +98,21 @@
             headerTitle.value = "Редактировать пользователей"
         }
     }
+
+    let subjComponent = ref()
+    let subjIdCurrent = ref(0)
+    let MainFileContainerRef = ref()
+    subjComponent.value = "subjComponent"
+    
+
 </script>
 
 <template>
     <div class="table w-full h-auto">
-        <div class="table-row h-10"><Header :name="userData.data.name" :surname="userData.data.surname" :headerTitle="headerTitle"/></div>
-        <MainFileContainer v-show="showFiles" class="table-row"/>
+        <div v-if="showHeader" class="table-row h-10"><Header :name="userData.data.name" :surname="userData.data.surname" :headerTitle="headerTitle"/></div>
+        <MainFileContainer ref="subjComponent" :id="subjIdCurrent" v-show="showFiles" class="table-row"/>
         <MainAdminSubjectForm v-show="showAdminSubjectForm" class="table-row"/>
-        <MainSubjectContainer v-show="showSubjectContainer" @cardClick="onCardClicked"  class="table-row"/>
+        <MainSubjectContainer ref="subjComponent" v-show="showSubjectContainer" @cardClick="onCardClicked"  class="table-row"/>
         <MainAdminGroupForm v-show="showAdminGroupForm" class="table-row"></MainAdminGroupForm>
         <MainAdminInstituteForm v-show="showMainAdminInstituteForm" class="table-row"></MainAdminInstituteForm>
         <MainAdminUserForm v-show="showMainAdminUserForm" class="table-row"></MainAdminUserForm>

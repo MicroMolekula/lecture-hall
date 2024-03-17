@@ -2,13 +2,16 @@
     import FileTable from './FileTable.vue'
     import SubjectCard from './SubjectCard.vue'
     import { createVuetify } from 'vuetify'
-    import { ref } from 'vue'
+    import { ref, watch } from 'vue'
     const emit = defineEmits(['cardClick'])
 
+    defineExpose({
+        getSubjects
+    })
 
     function onCardClicked(id){
-        console.log(id)
-        emit('cardClick',id)
+        console.log(id.value)
+        emit('cardClick',id.value)
     }
     let subjectList = ref()
 
@@ -33,8 +36,11 @@
                 throw new Error('error')
             })
             .then(data => {
+                console.log(data.data.length)
+                subjList.value.length = 0
                 for(let i = 0; i < data.data.length; i++){
                     subjList.value.push({title: data.data[i].title,id: data.data[i].id})
+                    
                 }
             } )
             .catch((error)=>{
@@ -43,7 +49,6 @@
     }
     let templateImage = ref("src/assets/p1.jpg")
     let subjList = ref([])
-    getSubjects()
 </script>
 
 <template>
