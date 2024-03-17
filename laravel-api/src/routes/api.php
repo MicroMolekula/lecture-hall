@@ -83,7 +83,6 @@ Route::group([
 
 
 Route::get('/group', \App\Http\Controllers\Group\IndexController::class)->name('group.index');
-Route::get('/group/create', \App\Http\Controllers\Group\CreateController::class)->name('group.create');
 Route::post('/group', \App\Http\Controllers\Group\StoreController::class)->name('group.store');
 Route::get('/group/{group}', \App\Http\Controllers\Group\ShowController::class)->name('group.show');
 Route::get('/group/{group}/edit', \App\Http\Controllers\Group\EditController::class)->name('group.edit');
