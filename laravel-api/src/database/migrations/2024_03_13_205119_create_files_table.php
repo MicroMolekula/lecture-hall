@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('path')->nullable();
-            $table->string('description')->nullable()->default(null);
+            $table->text('description')->nullable()->default(null);
             $table->string('type')->default('text');
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('subject_id')->constrained('subjects');

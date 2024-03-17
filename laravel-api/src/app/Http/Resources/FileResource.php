@@ -25,6 +25,7 @@ class FileResource extends JsonResource
             'type' => $this->type,
             'user_id' => $this->user_id,
             'subject_id' => $this->subject_id,
+            'created_at' => $this->created_at,
             'user' => new UserResource($this->user),
         ];
     }
