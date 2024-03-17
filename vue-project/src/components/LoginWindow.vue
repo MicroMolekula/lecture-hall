@@ -96,6 +96,7 @@
             <v-text-field
                 v-model="userData.password"
                 label="Пароль"
+                hide-details
                 :messages="formMessage"
             ></v-text-field>
 
