@@ -24,9 +24,12 @@ class FileUploadController extends Controller
         );
         $path = Storage::path($path);
 
+        $fileText = $ext === 'mp3' ? null : file_get_contents($path);
+
         $file = File::create([
             'title' => $filename,
             'path' => $path,
+            'description' => $fileText,
             'type' => $ext,
             'user_id' => auth()->user()->id,
             'subject_id' => $subject->id,
