@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\File;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,10 @@ Route::get('/users/test', [\App\Http\Controllers\UserController::class, 'test'])
 Route::get('/teachers', function () {
     $teachers = User::where('role', 'teacher')->get();
     return \App\Http\Resources\UserResource::collection($teachers);
+});
+
+Route::get('/tests', function (){
+    dd(asset(\Illuminate\Support\Facades\Storage::url('/public/test2.mp3')));
 });
 
 
@@ -78,17 +83,15 @@ Route::group([
 
 
 Route::get('/group', \App\Http\Controllers\Group\IndexController::class)->name('group.index');
-//Route::get('/group/create', \App\Http\Controllers\Group\CreateController::class)->name('group.create');
 Route::post('/group', \App\Http\Controllers\Group\StoreController::class)->name('group.store');
 Route::get('/group/{group}', \App\Http\Controllers\Group\ShowController::class)->name('group.show');
 Route::get('/group/{group}/edit', \App\Http\Controllers\Group\EditController::class)->name('group.edit');
 Route::patch('/group/{group}', \App\Http\Controllers\Group\UpdateController::class)->name('group.update');
 Route::delete('/group/{group}',\App\Http\Controllers\Group\DestroyController::class   )->name('group.delete');
 
-Route::apiResources([
-    'file' => \App\Http\Controllers\Api\FileController::class,
-    //'group' => \App\Http\Controllers\Api\GroupController::class
-]);
+Route::post('/file', \App\Http\Controllers\File\StoreController::class);
+
+
 
 
 
