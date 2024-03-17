@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | API Routes
-|--------------------------------------------------------------------------
+|----------------------------   ----------------------------------------------
 |
 | Here is where you can register API routes for your application. These
 | routes are loaded by the RouteServiceProvider and all of them will
@@ -31,20 +31,14 @@ Route::get('/teachers', function () {
     return \App\Http\Resources\UserResource::collection($teachers);
 });
 
-Route::get('/tests', function (){
-    dd(asset(\Illuminate\Support\Facades\Storage::url('/public/test2.mp3')));
-});
 
 
 Route::get('/subject', \App\Http\Controllers\Subject\IndexController::class)->name('subject.index');
 Route::post('/subject', \App\Http\Controllers\Subject\StoreController::class)->name('subject.store');
 Route::get('/subject/{subject}', \App\Http\Controllers\Subject\ShowController::class)->name('subject.show');
-Route::get('/subject/{subject}/edit', \App\Http\Controllers\Subject\EditController::class)->name('subject.edit');
+Route::post('/subject/{subject}/fileUpload', \App\Http\Controllers\Subject\FileUploadController::class)->name('subject.edit');
 Route::patch('/subject/{subject}', \App\Http\Controllers\Subject\UpdateController::class)->name('subject.update');
-
 Route::delete('/subject/{subject}', \App\Http\Controllers\Subject\DestroyController::class)->name('subject.delete');
-
-
 
 
 //Route::apiResources([
@@ -90,6 +84,7 @@ Route::patch('/group/{group}', \App\Http\Controllers\Group\UpdateController::cla
 Route::delete('/group/{group}',\App\Http\Controllers\Group\DestroyController::class   )->name('group.delete');
 
 Route::post('/file', \App\Http\Controllers\File\StoreController::class);
+Route::post('/file', \App\Http\Controllers\File\IndexController::class);
 
 
 

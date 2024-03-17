@@ -3,6 +3,7 @@
     import SubjectCard from './SubjectCard.vue'
     import { createVuetify } from 'vuetify'
     import { ref } from 'vue'
+    import axios from 'axios'
 
     function onFileSelected(event){
         var reader = new FileReader()
@@ -56,20 +57,20 @@
 
     function addSubject(){
         let template = {title : subjectName.value, groups: groupModel.value, teachers:teacherModel.value}
-        let req = JSON.stringify(template)
-        console.log(req)
-        const requestOptions = {
-                method: "POST",
+        let requestOptions = {
                 headers: { 'authorization': `Bearer ${localStorage.access_token}`},
-                body: JSON.stringify(req),
                 };
         
-            fetch("http://localhost/api/subject", requestOptions)
+            axios.post('http://localhost/api/subject', template,requestOptions)
             .then(response =>{
                 if(response.ok){
                     return response.json()
                 }
-                throw new Error('error')
+                else{
+                    console.log(response)
+                    throw new Error('error')
+                }
+                
             })
             .then(data => console.log(data) )
             .catch((error)=>{

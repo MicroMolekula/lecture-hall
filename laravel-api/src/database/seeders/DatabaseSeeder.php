@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
         User::factory(1)->state([
             'login' => 'id-123456',
             'password' => Hash::make('123456'),
+            'role' => 'teacher'
         ])->create();
 
 
