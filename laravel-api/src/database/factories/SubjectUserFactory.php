@@ -20,21 +20,30 @@ class SubjectUserFactory extends Factory
     {
         $uniqueUserSubjectPairs = collect();
 
-        return [
-            'user_id' => function () use ($uniqueUserSubjectPairs) {
-                $userId = User::where('role', 'teacher')->pluck('id')->random();
+        // Получаем список всех пользователей с ролью "teacher"
+        $teacherIds = User::where('role', 'teacher')->pluck('id');
 
-                return $userId;
+        return [
+            'user_id' => function () use ($teacherIds) {
+                // Выбираем случайный идентификатор пользователя из списка учителей
+                return $teacherIds->random();
             },
             'subject_id' => function (array $attributes) use ($uniqueUserSubjectPairs) {
-                $subjectId = Subject::pluck('id')->random();
+                // Получаем идентификаторы всех предметов
+                $subjectIds = Subject::pluck('id');
 
+                // Выбираем случайный идентификатор предмета
+                $subjectId = $subjectIds->random();
+
+                // Проверяем, что у данного пользователя уже нет такого предмета
                 while ($uniqueUserSubjectPairs->contains(function ($pair) use ($attributes, $subjectId) {
                     return $pair['user_id'] === $attributes['user_id'] && $pair['subject_id'] === $subjectId;
                 })) {
-                    $subjectId = Subject::pluck('id')->random();
+                    // Если предмет уже присутствует у пользователя, выбираем другой случайный предмет
+                    $subjectId = $subjectIds->random();
                 }
 
+                // Добавляем пару user_id и subject_id в коллекцию, чтобы избежать повторений
                 $uniqueUserSubjectPairs->push([
                     'user_id' => $attributes['user_id'],
                     'subject_id' => $subjectId,
@@ -44,5 +53,6 @@ class SubjectUserFactory extends Factory
             },
         ];
     }
+
 
 }

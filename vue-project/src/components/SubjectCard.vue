@@ -3,7 +3,7 @@
     const props = defineProps({
         subjectId : Number,
         name : String,
-        image : Image
+        image : String
     })
 
 
@@ -24,7 +24,7 @@
     let name = ref(props.name)
     let image = ref(props.image)
 
-
+    
 </script>
 
 

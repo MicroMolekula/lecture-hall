@@ -47,6 +47,11 @@ Route::delete('/subject/{subject}', \App\Http\Controllers\Subject\DestroyControl
 
 
 
+//Route::apiResources([
+//   'files' => \App\Http\Controllers\Api\FileController::class
+//]);
+
+
 
 Route::get('/institute', \App\Http\Controllers\Institute\IndexController::class)->name('institute.index');
 Route::post('/institute', \App\Http\Controllers\Institute\StoreController::class)->name('institute.store');
@@ -78,13 +83,16 @@ Route::group([
 
 
 Route::get('/group', \App\Http\Controllers\Group\IndexController::class)->name('group.index');
+Route::get('/group/create', \App\Http\Controllers\Group\CreateController::class)->name('group.create');
 Route::post('/group', \App\Http\Controllers\Group\StoreController::class)->name('group.store');
 Route::get('/group/{group}', \App\Http\Controllers\Group\ShowController::class)->name('group.show');
 Route::get('/group/{group}/edit', \App\Http\Controllers\Group\EditController::class)->name('group.edit');
 Route::patch('/group/{group}', \App\Http\Controllers\Group\UpdateController::class)->name('group.update');
 Route::delete('/group/{group}',\App\Http\Controllers\Group\DestroyController::class   )->name('group.delete');
 
-
-
 Route::post('/file', \App\Http\Controllers\File\StoreController::class);
+
+
+
+
 

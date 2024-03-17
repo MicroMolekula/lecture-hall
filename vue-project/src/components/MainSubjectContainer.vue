@@ -12,35 +12,44 @@
     }
     let subjectList = ref()
 
- //   fetch('http://localhost:888/api/users/55/show')
-  //  .then(response => response.json())
-  //  .then(data => subjectList.value = data.data)
-
     let subjectTemplate = {
         title: "wwwwwwwwwwwwwццц",
-        titleShort: "",
         id: 1,
     }
-    makeTitleShort([subjectTemplate])
 
-    function makeTitleShort(subjectListArg){
-        for(let i = 0; i < subjectListArg.length ; i++){
-            console.log(subjectListArg[0].title.length)
-            subjectListArg[i].titleShort = subjectListArg[i].title
-            if(subjectListArg[i].title.length > 14){
-                subjectListArg[i].titleShort = subjectListArg[i].titleShort.substring(0,13)
-                subjectListArg[i].titleShort += "..."
-                console.log(subjectListArg[i].titleShort)
-            }
-        }
+
+    function getSubjects(){
+        const requestOptions = {
+                method: "GET",
+                headers: { 'authorization': `Bearer ${localStorage.access_token}`},
+                body: null,
+                };
+        
+            fetch("http://localhost/api/subject", requestOptions)
+            .then(response =>{
+                if(response.ok){
+                    return response.json()
+                }
+                throw new Error('error')
+            })
+            .then(data => {
+                for(let i = 0; i < data.data.length; i++){
+                    subjList.value.push({title: data.data[i].title,id: data.data[i].id})
+                }
+            } )
+            .catch((error)=>{
+                console.log(error.message)
+            })
     }
-    let subjList = ref([subjectTemplate])
+    let templateImage = ref("src/assets/p1.jpg")
+    let subjList = ref([])
+    getSubjects()
 </script>
 
 <template>
     <div class="">
         <v-sheet class="p-5">
-            <SubjectCard @cardClick="onCardClicked" v-for="subj in subjList" :name="subj.title" :subjectId="subj.id" class="mr-5 mb-5"/>
+            <SubjectCard @cardClick="onCardClicked" v-for="subj in subjList"  :image="templateImage" :name="subj.title" :subjectId="subj.id" class="mr-5 mb-5"/>
 
         </v-sheet>
        

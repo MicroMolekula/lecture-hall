@@ -10,6 +10,6 @@ use Illuminate\Http\Request;
 class EditController extends Controller
 {
     public function __invoke(Institute $institute){
-        return InstituteResource::collection($institute);
+        return new InstituteResource($institute);
     }
 }
