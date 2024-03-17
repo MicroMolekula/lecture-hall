@@ -31,6 +31,7 @@ class GroupFactory extends Factory
 
         $randomGroup = $this->faker->unique()->randomElement($groups);
         $instituteId = $institutes[substr($randomGroup, 0, 2)];
+        //$instituteId = 1;
 
         return [
             'title' => $randomGroup,
